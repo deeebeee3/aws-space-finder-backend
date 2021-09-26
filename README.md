@@ -32,4 +32,6 @@ cdk bootstrap
 
 cdk synth (just to check that we imported the right asset - error if not correct)
 
+in cdk.out folder we should now have an asset folder with out lambda (asset.xxx)
+
 cdk deploy
