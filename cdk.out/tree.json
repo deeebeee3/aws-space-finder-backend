@@ -1,0 +1,57 @@
+{
+  "version": "tree-0.1",
+  "tree": {
+    "id": "App",
+    "path": "",
+    "children": {
+      "Tree": {
+        "id": "Tree",
+        "path": "Tree",
+        "constructInfo": {
+          "fqn": "constructs.Construct",
+          "version": "10.0.5"
+        }
+      },
+      "Space-Finder": {
+        "id": "Space-Finder",
+        "path": "Space-Finder",
+        "children": {
+          "CDKMetadata": {
+            "id": "CDKMetadata",
+            "path": "Space-Finder/CDKMetadata",
+            "children": {
+              "Default": {
+                "id": "Default",
+                "path": "Space-Finder/CDKMetadata/Default",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnResource",
+                  "version": "2.0.0-rc.23"
+                }
+              },
+              "Condition": {
+                "id": "Condition",
+                "path": "Space-Finder/CDKMetadata/Condition",
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.CfnCondition",
+                  "version": "2.0.0-rc.23"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "constructs.Construct",
+              "version": "10.0.5"
+            }
+          }
+        },
+        "constructInfo": {
+          "fqn": "aws-cdk-lib.Stack",
+          "version": "2.0.0-rc.23"
+        }
+      }
+    },
+    "constructInfo": {
+      "fqn": "aws-cdk-lib.App",
+      "version": "2.0.0-rc.23"
+    }
+  }
+}
