@@ -1,9 +1,70 @@
 {
   "Resources": {
+    "helloLambdaServiceRoleBB046714": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com"
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+              ]
+            ]
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "Space-Finder/helloLambda/ServiceRole/Resource"
+      }
+    },
+    "helloLambda79DCE371": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
+          },
+          "S3Key": "ae5f6930c8e7d29f0f8f6e8dce0b9cea33faf4eb95fc5d689c7ef6c7d9cc60d4.zip"
+        },
+        "Role": {
+          "Fn::GetAtt": [
+            "helloLambdaServiceRoleBB046714",
+            "Arn"
+          ]
+        },
+        "Handler": "hello.main",
+        "Runtime": "nodejs14.x"
+      },
+      "DependsOn": [
+        "helloLambdaServiceRoleBB046714"
+      ],
+      "Metadata": {
+        "aws:cdk:path": "Space-Finder/helloLambda/Resource",
+        "aws:asset:path": "asset.ae5f6930c8e7d29f0f8f6e8dce0b9cea33faf4eb95fc5d689c7ef6c7d9cc60d4",
+        "aws:asset:property": "Code"
+      }
+    },
     "CDKMetadata": {
       "Type": "AWS::CDK::Metadata",
       "Properties": {
-        "Analytics": "v2:deflate64:H4sIAAAAAAAA/zPSM9Az0C1K1jMyVkwsL9ZNTsnWzclM0qsOLklMztZxTssLSi3OLy1KTgWxnfPzUjJLMvPzanXy8lNS9bKK9csMzfQMgWYoZhVnZuoWleaVZOam6gVBaAAgw2VQXgAAAA=="
+        "Analytics": "v2:deflate64:H4sIAAAAAAAA/zWOSQ6DMAxFz8I+cRmk7gtSD0APgEySIjMkUpy0i4i7N4C6eva3/PRrKKGUXkHdFPhlqfQiVxohvQKqReRoSCtuo0ZIz2hVIGdF97b/eReEG6TereaID+6CmwGZTWB4HMg7tFEtJrTI+XyG2T+Rnc4nwy56dQo6ZzVdYuu0gZlvn+oOVW5ZzEwkfbSBNgP9xR8hywwbwAAAAA=="
       },
       "Metadata": {
         "aws:cdk:path": "Space-Finder/CDKMetadata/Default"
