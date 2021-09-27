@@ -132,7 +132,7 @@ In this example we use the aws-sdk to list the s3 buckets and show them as strin
 
 First time we try the request (after cdk deploy first) we will get an error
 
-We can get error details in ClouWatch logs
+We can get error details in CloudWatch logs
 
 Because we need to give our lambda the right permissions to list s3 buckets...
 
@@ -141,5 +141,37 @@ Add policy to lambda
 cdk deploy
 
 then try request again - and we should see list of buckets in response body...
+
+---
+
+# Run Lambda Locally in Debug mode (easier than above section)
+
+Go to vscode debug and create a configuration (.vscode/launch.json) for nodejs:
+
+{
+"version": "0.2.0",
+"configurations": [
+{
+"type": "node",
+"request": "launch",
+"name": "Debug local file",
+"runtimeArgs": ["-r", "ts-node/register"],
+"args": ["${relativeFile}"],
+"env": {
+"AWS_REGION": "us-west-2"
+}
+}
+]
+}
+
+add a breakpoint in the hello.ts file
+
+open the Hello.test.ts and click vscode debugger and hit play.
+
+we should hit our breakpoint and be able to inspect the variables...
+
+like see our s3 buckets etc...
+
+this uses the permissions from our local aws config (we gave administrator access to it) rather than what we assigned to the lambda
 
 ---
