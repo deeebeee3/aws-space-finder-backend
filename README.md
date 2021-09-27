@@ -123,3 +123,23 @@ Every time a Lambda is executed it is logged under log groups
 click on it and look at the most recent log stream
 
 ---
+
+# Using the aws-sdk
+
+npm i aws-sdk
+
+In this example we use the aws-sdk to list the s3 buckets and show them as string as response in our lambda...
+
+First time we try the request (after cdk deploy first) we will get an error
+
+We can get error details in ClouWatch logs
+
+Because we need to give our lambda the right permissions to list s3 buckets...
+
+Add policy to lambda
+
+cdk deploy
+
+then try request again - and we should see list of buckets in response body...
+
+---
