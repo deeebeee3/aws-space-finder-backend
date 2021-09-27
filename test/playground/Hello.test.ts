@@ -1,3 +1,9 @@
 import { handler } from "../../services/SpacesTable/create";
 
-handler({} as any, {} as any);
+const event = {
+  body: {
+    location: "Paris",
+  },
+};
+
+handler(event as any, {} as any);
