@@ -1,6 +1,6 @@
 # aws-space-finder-backend
 
-AWS Backend
+# AWS Backend
 
 npm init -y
 npm i -D aws-cdk aws-cdk-lib constructs ts-node typescript
@@ -22,7 +22,7 @@ Best thing to do is to copy ts.config from a cdk generated project and use it in
 
 ---
 
-Basic AWS Lambda
+# Basic AWS Lambda
 
 Install @types/node..
 
@@ -38,7 +38,7 @@ cdk deploy
 
 ---
 
-API Gateway and Lambda Integration...
+# API Gateway and Lambda Integration...
 
 cdk deploy
 
@@ -66,11 +66,11 @@ We will get the response data :-) from our method...
 
 ---
 
-Install REST client vscode package...
+# Install REST client vscode package...
 
 ---
 
-DynamoDB with CDK
+# DynamoDB with CDK
 
 user -> APIGateway -> Lambda -> DynamoDB -> APIGateway -> user
 
@@ -81,7 +81,7 @@ then if no errors run cdk deploy to deploy our stack (and the dynamodb table too
 
 ---
 
-Lambda bundling problem:
+# Lambda bundling problem:
 
 - Deploy implementation and dependencies
 - Transform TS into JS
@@ -105,3 +105,21 @@ after creating service in TS and creating TS lambda function in stack
 do cdk synth to make sure no errors...
 
 cdk deploy
+
+---
+
+# CloudWatch (Logging)
+
+add some console logs to the lambda
+
+cdk deploy
+
+fire off request from requests.http file
+
+check logs in CloudWatch under Logs -> Log groups
+
+Every time a Lambda is executed it is logged under log groups
+
+click on it and look at the most recent log stream
+
+---

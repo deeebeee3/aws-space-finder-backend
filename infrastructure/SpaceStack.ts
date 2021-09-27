@@ -17,20 +17,23 @@ export class SpaceStack extends Stack {
   constructor(scope: Construct, id: string, props: StackProps) {
     super(scope, id, props);
 
-    const helloLambda = new LambdaFunction(this, "helloLambda", {
+    //JS Lambda
+    /* const helloLambda = new LambdaFunction(this, "helloLambda", {
       runtime: Runtime.NODEJS_14_X,
       code: Code.fromAsset(join(__dirname, "..", "services", "hello")),
       handler: "hello.main",
-    });
+    }); */
 
+    //TS Lambda
     const helloLambdaNodeJs = new NodejsFunction(this, "helloLambdaNodeJs", {
       entry: join(__dirname, "..", "services", "node-lambda", "hello.ts"),
       handler: "handler",
     });
 
-    //Hello Api lambda integration
-    const helloLambdaIntegration = new LambdaIntegration(helloLambda);
-    const helloLambdaResource = this.api.root.addResource("hello");
+    //Hello Api lambda integration (Lambda and APIGateway)
+    const helloLambdaIntegration = new LambdaIntegration(helloLambdaNodeJs);
+    const helloLambdaResource =
+      this.api.root.addResource("hello"); /* api-url/hello */
     helloLambdaResource.addMethod("GET", helloLambdaIntegration);
   }
 }
