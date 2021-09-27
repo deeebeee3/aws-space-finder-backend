@@ -35,3 +35,33 @@ cdk synth (just to check that we imported the right asset - error if not correct
 in cdk.out folder we should now have an asset folder with out lambda (asset.xxx)
 
 cdk deploy
+
+---
+
+API Gateway and Lambda Integration...
+
+cdk deploy
+
+accept IAM policy changes
+
+Once finished publishing will give us an endpoint where we can access our service:
+
+✅ Space-Finder (SpaceFinder)
+
+Outputs:
+Space-Finder.SpaceApiEndpointDA7E4050 = https://92p6m8c7ph.execute-api.us-west-2.amazonaws.com/prod/
+
+Stack ARN:
+arn:aws:cloudformation:us-west-2:841848180286:stack/SpaceFinder/b7bfc830-1ef6-11ec-8165-0ae04a84ad2d
+
+Going here will give error because we haven't accessed the right method:
+
+https://92p6m8c7ph.execute-api.us-west-2.amazonaws.com/prod/
+
+our method:
+
+https://92p6m8c7ph.execute-api.us-west-2.amazonaws.com/prod/hello
+
+We will get the response data :-) from our method...
+
+---
