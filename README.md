@@ -67,3 +67,14 @@ We will get the response data :-) from our method...
 ---
 
 Install REST client vscode package...
+
+---
+
+DynamoDB with CDK
+
+user -> APIGateway -> Lambda -> DynamoDB -> APIGateway -> user
+
+After creating GenericTable class and initializing it in our stack run cdk synth
+to compile and make sure no errors
+
+then if no errors run cdk deploy to deploy our stack (and the dynamodb table too)...
