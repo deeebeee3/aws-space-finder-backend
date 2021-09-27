@@ -78,3 +78,30 @@ After creating GenericTable class and initializing it in our stack run cdk synth
 to compile and make sure no errors
 
 then if no errors run cdk deploy to deploy our stack (and the dynamodb table too)...
+
+---
+
+Lambda bundling problem:
+
+- Deploy implementation and dependencies
+- Transform TS into JS
+
+What we will do:
+
+https://docs.aws.amazon.com/cdk/api/latest/docs/aws-lambda-nodejs-readme.html
+
+install the esbuild package:
+
+npm install --save-dev esbuild@0
+
+then build a simple lambda with TS...
+
+use the following package to generate random ids which we can use..
+
+npm install uuid @types/uuid
+
+after creating service in TS and creating TS lambda function in stack
+
+do cdk synth to make sure no errors...
+
+cdk deploy
