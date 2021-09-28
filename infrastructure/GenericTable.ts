@@ -98,7 +98,7 @@ export class GenericTable {
       functionName: lambdaId,
       environment: {
         TABLE_NAME: this.props.tableName,
-        // PRIMARY_KEY: this.props.primaryKey,
+        PRIMARY_KEY: this.props.primaryKey,
       },
     });
   }
