@@ -22,6 +22,7 @@ export class SpaceStack extends Stack {
     createLambdaPath: "create",
     readLambdaPath: "read",
     updateLambdaPath: "update",
+    deleteLambdaPath: "delete",
   });
 
   constructor(scope: Construct, id: string, props: StackProps) {
@@ -59,5 +60,6 @@ export class SpaceStack extends Stack {
     spaceResource.addMethod("POST", this.spacesTable.createLambdaIntegration);
     spaceResource.addMethod("GET", this.spacesTable.readLambdaIntegration);
     spaceResource.addMethod("PUT", this.spacesTable.updateLambdaIntegration);
+    spaceResource.addMethod("DELETE", this.spacesTable.deleteLambdaIntegration);
   }
 }

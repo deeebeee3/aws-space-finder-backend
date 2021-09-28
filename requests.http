@@ -2,6 +2,7 @@
 
 GET {{endpoint}}/hello/
 ###
+
 GET {{endpoint}}/spaces/
 ###
 
@@ -24,7 +25,10 @@ POST {{endpoint}}/spaces/
 Content-Type: application/json
 
 {
-    "location": "London",
-    "name": "Best Location"
+    "location": "Mars",
+    "name": "The Red Planet"
 }
+###
+
+DELETE {{endpoint}}/spaces?spaceId=1b870f80-1bf3-4f87-926d-f40640ed7f63
 ###
