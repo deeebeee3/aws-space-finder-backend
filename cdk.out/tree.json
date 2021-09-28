@@ -143,7 +143,7 @@
                           "Ref": "SpaceApi1B373D2B"
                         },
                         "deploymentId": {
-                          "Ref": "SpaceApiDeploymentA2B9E7653028febf9d3ff0250e48bc542a7f54d6"
+                          "Ref": "SpaceApiDeploymentA2B9E765415c76bcc6c1bbd9c5cb936b561cb7ef"
                         },
                         "stageName": "prod"
                       }
@@ -396,7 +396,7 @@
                                 "action": "lambda:InvokeFunction",
                                 "functionName": {
                                   "Fn::GetAtt": [
-                                    "SpacesTableCreate125CEC52",
+                                    "SpacesTablecreateB63D5487",
                                     "Arn"
                                   ]
                                 },
@@ -445,7 +445,7 @@
                                 "action": "lambda:InvokeFunction",
                                 "functionName": {
                                   "Fn::GetAtt": [
-                                    "SpacesTableCreate125CEC52",
+                                    "SpacesTablecreateB63D5487",
                                     "Arn"
                                   ]
                                 },
@@ -512,7 +512,7 @@
                                         ":lambda:path/2015-03-31/functions/",
                                         {
                                           "Fn::GetAtt": [
-                                            "SpacesTableCreate125CEC52",
+                                            "SpacesTablecreateB63D5487",
                                             "Arn"
                                           ]
                                         },
@@ -548,7 +548,7 @@
                                 "action": "lambda:InvokeFunction",
                                 "functionName": {
                                   "Fn::GetAtt": [
-                                    "SpacesTableReadC88C4D14",
+                                    "SpacesTableread6E5E5678",
                                     "Arn"
                                   ]
                                 },
@@ -597,7 +597,7 @@
                                 "action": "lambda:InvokeFunction",
                                 "functionName": {
                                   "Fn::GetAtt": [
-                                    "SpacesTableReadC88C4D14",
+                                    "SpacesTableread6E5E5678",
                                     "Arn"
                                   ]
                                 },
@@ -664,7 +664,159 @@
                                         ":lambda:path/2015-03-31/functions/",
                                         {
                                           "Fn::GetAtt": [
-                                            "SpacesTableReadC88C4D14",
+                                            "SpacesTableread6E5E5678",
+                                            "Arn"
+                                          ]
+                                        },
+                                        "/invocations"
+                                      ]
+                                    ]
+                                  },
+                                  "integrationHttpMethod": "POST"
+                                }
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "aws-cdk-lib.aws_apigateway.CfnMethod",
+                              "version": "2.0.0-rc.23"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_apigateway.Method",
+                          "version": "2.0.0-rc.23"
+                        }
+                      },
+                      "PUT": {
+                        "id": "PUT",
+                        "path": "Space-Finder/SpaceApi/Default/spaces/PUT",
+                        "children": {
+                          "ApiPermission.SpaceFinderSpaceApi1F575F27.PUT..spaces": {
+                            "id": "ApiPermission.SpaceFinderSpaceApi1F575F27.PUT..spaces",
+                            "path": "Space-Finder/SpaceApi/Default/spaces/PUT/ApiPermission.SpaceFinderSpaceApi1F575F27.PUT..spaces",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
+                              "aws:cdk:cloudformation:props": {
+                                "action": "lambda:InvokeFunction",
+                                "functionName": {
+                                  "Fn::GetAtt": [
+                                    "SpacesTableupdate776437D3",
+                                    "Arn"
+                                  ]
+                                },
+                                "principal": "apigateway.amazonaws.com",
+                                "sourceArn": {
+                                  "Fn::Join": [
+                                    "",
+                                    [
+                                      "arn:",
+                                      {
+                                        "Ref": "AWS::Partition"
+                                      },
+                                      ":execute-api:",
+                                      {
+                                        "Ref": "AWS::Region"
+                                      },
+                                      ":",
+                                      {
+                                        "Ref": "AWS::AccountId"
+                                      },
+                                      ":",
+                                      {
+                                        "Ref": "SpaceApi1B373D2B"
+                                      },
+                                      "/",
+                                      {
+                                        "Ref": "SpaceApiDeploymentStageprodBB8A31FE"
+                                      },
+                                      "/PUT/spaces"
+                                    ]
+                                  ]
+                                }
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "aws-cdk-lib.aws_lambda.CfnPermission",
+                              "version": "2.0.0-rc.23"
+                            }
+                          },
+                          "ApiPermission.Test.SpaceFinderSpaceApi1F575F27.PUT..spaces": {
+                            "id": "ApiPermission.Test.SpaceFinderSpaceApi1F575F27.PUT..spaces",
+                            "path": "Space-Finder/SpaceApi/Default/spaces/PUT/ApiPermission.Test.SpaceFinderSpaceApi1F575F27.PUT..spaces",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::Lambda::Permission",
+                              "aws:cdk:cloudformation:props": {
+                                "action": "lambda:InvokeFunction",
+                                "functionName": {
+                                  "Fn::GetAtt": [
+                                    "SpacesTableupdate776437D3",
+                                    "Arn"
+                                  ]
+                                },
+                                "principal": "apigateway.amazonaws.com",
+                                "sourceArn": {
+                                  "Fn::Join": [
+                                    "",
+                                    [
+                                      "arn:",
+                                      {
+                                        "Ref": "AWS::Partition"
+                                      },
+                                      ":execute-api:",
+                                      {
+                                        "Ref": "AWS::Region"
+                                      },
+                                      ":",
+                                      {
+                                        "Ref": "AWS::AccountId"
+                                      },
+                                      ":",
+                                      {
+                                        "Ref": "SpaceApi1B373D2B"
+                                      },
+                                      "/test-invoke-stage/PUT/spaces"
+                                    ]
+                                  ]
+                                }
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "aws-cdk-lib.aws_lambda.CfnPermission",
+                              "version": "2.0.0-rc.23"
+                            }
+                          },
+                          "Resource": {
+                            "id": "Resource",
+                            "path": "Space-Finder/SpaceApi/Default/spaces/PUT/Resource",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::ApiGateway::Method",
+                              "aws:cdk:cloudformation:props": {
+                                "httpMethod": "PUT",
+                                "resourceId": {
+                                  "Ref": "SpaceApispacesD5EE855F"
+                                },
+                                "restApiId": {
+                                  "Ref": "SpaceApi1B373D2B"
+                                },
+                                "authorizationType": "NONE",
+                                "integration": {
+                                  "type": "AWS_PROXY",
+                                  "uri": {
+                                    "Fn::Join": [
+                                      "",
+                                      [
+                                        "arn:",
+                                        {
+                                          "Ref": "AWS::Partition"
+                                        },
+                                        ":apigateway:",
+                                        {
+                                          "Ref": "AWS::Region"
+                                        },
+                                        ":lambda:path/2015-03-31/functions/",
+                                        {
+                                          "Fn::GetAtt": [
+                                            "SpacesTableupdate776437D3",
                                             "Arn"
                                           ]
                                         },
@@ -775,17 +927,17 @@
               "version": "2.0.0-rc.23"
             }
           },
-          "SpacesTable-Create": {
-            "id": "SpacesTable-Create",
-            "path": "Space-Finder/SpacesTable-Create",
+          "SpacesTable-create": {
+            "id": "SpacesTable-create",
+            "path": "Space-Finder/SpacesTable-create",
             "children": {
               "ServiceRole": {
                 "id": "ServiceRole",
-                "path": "Space-Finder/SpacesTable-Create/ServiceRole",
+                "path": "Space-Finder/SpacesTable-create/ServiceRole",
                 "children": {
                   "Resource": {
                     "id": "Resource",
-                    "path": "Space-Finder/SpacesTable-Create/ServiceRole/Resource",
+                    "path": "Space-Finder/SpacesTable-create/ServiceRole/Resource",
                     "attributes": {
                       "aws:cdk:cloudformation:type": "AWS::IAM::Role",
                       "aws:cdk:cloudformation:props": {
@@ -824,11 +976,11 @@
                   },
                   "DefaultPolicy": {
                     "id": "DefaultPolicy",
-                    "path": "Space-Finder/SpacesTable-Create/ServiceRole/DefaultPolicy",
+                    "path": "Space-Finder/SpacesTable-create/ServiceRole/DefaultPolicy",
                     "children": {
                       "Resource": {
                         "id": "Resource",
-                        "path": "Space-Finder/SpacesTable-Create/ServiceRole/DefaultPolicy/Resource",
+                        "path": "Space-Finder/SpacesTable-create/ServiceRole/DefaultPolicy/Resource",
                         "attributes": {
                           "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
                           "aws:cdk:cloudformation:props": {
@@ -868,10 +1020,10 @@
                               ],
                               "Version": "2012-10-17"
                             },
-                            "policyName": "SpacesTableCreateServiceRoleDefaultPolicy308B2E77",
+                            "policyName": "SpacesTablecreateServiceRoleDefaultPolicyE5F12F0C",
                             "roles": [
                               {
-                                "Ref": "SpacesTableCreateServiceRoleE49CA3B4"
+                                "Ref": "SpacesTablecreateServiceRoleF8619EF5"
                               }
                             ]
                           }
@@ -895,11 +1047,11 @@
               },
               "Code": {
                 "id": "Code",
-                "path": "Space-Finder/SpacesTable-Create/Code",
+                "path": "Space-Finder/SpacesTable-create/Code",
                 "children": {
                   "Stage": {
                     "id": "Stage",
-                    "path": "Space-Finder/SpacesTable-Create/Code/Stage",
+                    "path": "Space-Finder/SpacesTable-create/Code/Stage",
                     "constructInfo": {
                       "fqn": "aws-cdk-lib.AssetStaging",
                       "version": "2.0.0-rc.23"
@@ -907,11 +1059,11 @@
                   },
                   "AssetBucket": {
                     "id": "AssetBucket",
-                    "path": "Space-Finder/SpacesTable-Create/Code/AssetBucket",
+                    "path": "Space-Finder/SpacesTable-create/Code/AssetBucket",
                     "children": {
                       "Notifications": {
                         "id": "Notifications",
-                        "path": "Space-Finder/SpacesTable-Create/Code/AssetBucket/Notifications",
+                        "path": "Space-Finder/SpacesTable-create/Code/AssetBucket/Notifications",
                         "constructInfo": {
                           "fqn": "constructs.Construct",
                           "version": "10.0.5"
@@ -931,7 +1083,7 @@
               },
               "Resource": {
                 "id": "Resource",
-                "path": "Space-Finder/SpacesTable-Create/Resource",
+                "path": "Space-Finder/SpacesTable-create/Resource",
                 "attributes": {
                   "aws:cdk:cloudformation:type": "AWS::Lambda::Function",
                   "aws:cdk:cloudformation:props": {
@@ -939,11 +1091,11 @@
                       "s3Bucket": {
                         "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
                       },
-                      "s3Key": "2f0ed7210c3800e33af1db3fff1c1526977bae48072807775116d084c587d8d5.zip"
+                      "s3Key": "4a3445ceacfd6336edf008c33a2398c24a52227e09b46e3778a0c3343e25928f.zip"
                     },
                     "role": {
                       "Fn::GetAtt": [
-                        "SpacesTableCreateServiceRoleE49CA3B4",
+                        "SpacesTablecreateServiceRoleF8619EF5",
                         "Arn"
                       ]
                     },
@@ -954,7 +1106,7 @@
                         "AWS_NODEJS_CONNECTION_REUSE_ENABLED": "1"
                       }
                     },
-                    "functionName": "SpacesTable-Create",
+                    "functionName": "SpacesTable-create",
                     "handler": "index.handler",
                     "runtime": "nodejs14.x"
                   }
@@ -970,17 +1122,17 @@
               "version": "2.0.0-rc.23"
             }
           },
-          "SpacesTable-Read": {
-            "id": "SpacesTable-Read",
-            "path": "Space-Finder/SpacesTable-Read",
+          "SpacesTable-read": {
+            "id": "SpacesTable-read",
+            "path": "Space-Finder/SpacesTable-read",
             "children": {
               "ServiceRole": {
                 "id": "ServiceRole",
-                "path": "Space-Finder/SpacesTable-Read/ServiceRole",
+                "path": "Space-Finder/SpacesTable-read/ServiceRole",
                 "children": {
                   "Resource": {
                     "id": "Resource",
-                    "path": "Space-Finder/SpacesTable-Read/ServiceRole/Resource",
+                    "path": "Space-Finder/SpacesTable-read/ServiceRole/Resource",
                     "attributes": {
                       "aws:cdk:cloudformation:type": "AWS::IAM::Role",
                       "aws:cdk:cloudformation:props": {
@@ -1019,11 +1171,11 @@
                   },
                   "DefaultPolicy": {
                     "id": "DefaultPolicy",
-                    "path": "Space-Finder/SpacesTable-Read/ServiceRole/DefaultPolicy",
+                    "path": "Space-Finder/SpacesTable-read/ServiceRole/DefaultPolicy",
                     "children": {
                       "Resource": {
                         "id": "Resource",
-                        "path": "Space-Finder/SpacesTable-Read/ServiceRole/DefaultPolicy/Resource",
+                        "path": "Space-Finder/SpacesTable-read/ServiceRole/DefaultPolicy/Resource",
                         "attributes": {
                           "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
                           "aws:cdk:cloudformation:props": {
@@ -1066,10 +1218,10 @@
                               ],
                               "Version": "2012-10-17"
                             },
-                            "policyName": "SpacesTableReadServiceRoleDefaultPolicyEAD1E3B1",
+                            "policyName": "SpacesTablereadServiceRoleDefaultPolicy28D7D0FA",
                             "roles": [
                               {
-                                "Ref": "SpacesTableReadServiceRoleDC90AD04"
+                                "Ref": "SpacesTablereadServiceRoleC65FC18B"
                               }
                             ]
                           }
@@ -1093,11 +1245,11 @@
               },
               "Code": {
                 "id": "Code",
-                "path": "Space-Finder/SpacesTable-Read/Code",
+                "path": "Space-Finder/SpacesTable-read/Code",
                 "children": {
                   "Stage": {
                     "id": "Stage",
-                    "path": "Space-Finder/SpacesTable-Read/Code/Stage",
+                    "path": "Space-Finder/SpacesTable-read/Code/Stage",
                     "constructInfo": {
                       "fqn": "aws-cdk-lib.AssetStaging",
                       "version": "2.0.0-rc.23"
@@ -1105,11 +1257,11 @@
                   },
                   "AssetBucket": {
                     "id": "AssetBucket",
-                    "path": "Space-Finder/SpacesTable-Read/Code/AssetBucket",
+                    "path": "Space-Finder/SpacesTable-read/Code/AssetBucket",
                     "children": {
                       "Notifications": {
                         "id": "Notifications",
-                        "path": "Space-Finder/SpacesTable-Read/Code/AssetBucket/Notifications",
+                        "path": "Space-Finder/SpacesTable-read/Code/AssetBucket/Notifications",
                         "constructInfo": {
                           "fqn": "constructs.Construct",
                           "version": "10.0.5"
@@ -1129,7 +1281,7 @@
               },
               "Resource": {
                 "id": "Resource",
-                "path": "Space-Finder/SpacesTable-Read/Resource",
+                "path": "Space-Finder/SpacesTable-read/Resource",
                 "attributes": {
                   "aws:cdk:cloudformation:type": "AWS::Lambda::Function",
                   "aws:cdk:cloudformation:props": {
@@ -1137,11 +1289,11 @@
                       "s3Bucket": {
                         "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
                       },
-                      "s3Key": "6a09eae24514b2fff2eef95c02fbafdba37dd13138c78f3086fc8aedd229d80d.zip"
+                      "s3Key": "f0315f15846ad074b96812c8eb8a3afb8b60fe473992ad561f0d20fe2daee100.zip"
                     },
                     "role": {
                       "Fn::GetAtt": [
-                        "SpacesTableReadServiceRoleDC90AD04",
+                        "SpacesTablereadServiceRoleC65FC18B",
                         "Arn"
                       ]
                     },
@@ -1152,7 +1304,202 @@
                         "AWS_NODEJS_CONNECTION_REUSE_ENABLED": "1"
                       }
                     },
-                    "functionName": "SpacesTable-Read",
+                    "functionName": "SpacesTable-read",
+                    "handler": "index.handler",
+                    "runtime": "nodejs14.x"
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_lambda.CfnFunction",
+                  "version": "2.0.0-rc.23"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_lambda_nodejs.NodejsFunction",
+              "version": "2.0.0-rc.23"
+            }
+          },
+          "SpacesTable-update": {
+            "id": "SpacesTable-update",
+            "path": "Space-Finder/SpacesTable-update",
+            "children": {
+              "ServiceRole": {
+                "id": "ServiceRole",
+                "path": "Space-Finder/SpacesTable-update/ServiceRole",
+                "children": {
+                  "Resource": {
+                    "id": "Resource",
+                    "path": "Space-Finder/SpacesTable-update/ServiceRole/Resource",
+                    "attributes": {
+                      "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                      "aws:cdk:cloudformation:props": {
+                        "assumeRolePolicyDocument": {
+                          "Statement": [
+                            {
+                              "Action": "sts:AssumeRole",
+                              "Effect": "Allow",
+                              "Principal": {
+                                "Service": "lambda.amazonaws.com"
+                              }
+                            }
+                          ],
+                          "Version": "2012-10-17"
+                        },
+                        "managedPolicyArns": [
+                          {
+                            "Fn::Join": [
+                              "",
+                              [
+                                "arn:",
+                                {
+                                  "Ref": "AWS::Partition"
+                                },
+                                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+                              ]
+                            ]
+                          }
+                        ]
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_iam.CfnRole",
+                      "version": "2.0.0-rc.23"
+                    }
+                  },
+                  "DefaultPolicy": {
+                    "id": "DefaultPolicy",
+                    "path": "Space-Finder/SpacesTable-update/ServiceRole/DefaultPolicy",
+                    "children": {
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "Space-Finder/SpacesTable-update/ServiceRole/DefaultPolicy/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                          "aws:cdk:cloudformation:props": {
+                            "policyDocument": {
+                              "Statement": [
+                                {
+                                  "Action": [
+                                    "dynamodb:BatchWriteItem",
+                                    "dynamodb:PutItem",
+                                    "dynamodb:UpdateItem",
+                                    "dynamodb:DeleteItem"
+                                  ],
+                                  "Effect": "Allow",
+                                  "Resource": [
+                                    {
+                                      "Fn::GetAtt": [
+                                        "SpacesTable8A997355",
+                                        "Arn"
+                                      ]
+                                    },
+                                    {
+                                      "Fn::Join": [
+                                        "",
+                                        [
+                                          {
+                                            "Fn::GetAtt": [
+                                              "SpacesTable8A997355",
+                                              "Arn"
+                                            ]
+                                          },
+                                          "/index/*"
+                                        ]
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ],
+                              "Version": "2012-10-17"
+                            },
+                            "policyName": "SpacesTableupdateServiceRoleDefaultPolicyD19FA020",
+                            "roles": [
+                              {
+                                "Ref": "SpacesTableupdateServiceRoleBBF2C0EB"
+                              }
+                            ]
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_iam.CfnPolicy",
+                          "version": "2.0.0-rc.23"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_iam.Policy",
+                      "version": "2.0.0-rc.23"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_iam.Role",
+                  "version": "2.0.0-rc.23"
+                }
+              },
+              "Code": {
+                "id": "Code",
+                "path": "Space-Finder/SpacesTable-update/Code",
+                "children": {
+                  "Stage": {
+                    "id": "Stage",
+                    "path": "Space-Finder/SpacesTable-update/Code/Stage",
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.AssetStaging",
+                      "version": "2.0.0-rc.23"
+                    }
+                  },
+                  "AssetBucket": {
+                    "id": "AssetBucket",
+                    "path": "Space-Finder/SpacesTable-update/Code/AssetBucket",
+                    "children": {
+                      "Notifications": {
+                        "id": "Notifications",
+                        "path": "Space-Finder/SpacesTable-update/Code/AssetBucket/Notifications",
+                        "constructInfo": {
+                          "fqn": "constructs.Construct",
+                          "version": "10.0.5"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_s3.BucketBase",
+                      "version": "2.0.0-rc.23"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_s3_assets.Asset",
+                  "version": "2.0.0-rc.23"
+                }
+              },
+              "Resource": {
+                "id": "Resource",
+                "path": "Space-Finder/SpacesTable-update/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::Lambda::Function",
+                  "aws:cdk:cloudformation:props": {
+                    "code": {
+                      "s3Bucket": {
+                        "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
+                      },
+                      "s3Key": "b1999f2f116d85739163598ccf153c3a62a726431f0ef4554ba71e1a93782053.zip"
+                    },
+                    "role": {
+                      "Fn::GetAtt": [
+                        "SpacesTableupdateServiceRoleBBF2C0EB",
+                        "Arn"
+                      ]
+                    },
+                    "environment": {
+                      "variables": {
+                        "TABLE_NAME": "SpacesTable",
+                        "PRIMARY_KEY": "spaceId",
+                        "AWS_NODEJS_CONNECTION_REUSE_ENABLED": "1"
+                      }
+                    },
+                    "functionName": "SpacesTable-update",
                     "handler": "index.handler",
                     "runtime": "nodejs14.x"
                   }
