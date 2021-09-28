@@ -6,6 +6,10 @@ import {
 } from "aws-lambda";
 import { v4 } from "uuid";
 
+/* this env var we defined in the GenericTable class
+where we createSingleLambda */
+const TABLE_NAME = process.env.TABLE_NAME;
+
 const dbClient = new DynamoDB.DocumentClient();
 
 async function handler(
@@ -24,7 +28,7 @@ async function handler(
   try {
     await dbClient
       .put({
-        TableName: "SpacesTable",
+        TableName: TABLE_NAME!, //we are sure table name exists at this point !
         Item: item,
       })
       .promise();

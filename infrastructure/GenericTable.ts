@@ -36,6 +36,8 @@ export class GenericTable {
 
   private initialize() {
     this.createTable();
+    this.createLambdas();
+    this.grantTableRightsToLambda();
   }
 
   private createTable() {
@@ -46,6 +48,40 @@ export class GenericTable {
       },
       tableName: this.props.tableName,
     });
+  }
+
+  private createLambdas() {
+    if (this.props.createLambdaPath) {
+      this.createLambda = this.createSingleLambda(this.props.createLambdaPath);
+      this.createLambdaIntegration = new LambdaIntegration(this.createLambda);
+    }
+    if (this.props.readLambdaPath) {
+      this.readLambda = this.createSingleLambda(this.props.readLambdaPath);
+      this.readLambdaIntegration = new LambdaIntegration(this.readLambda);
+    }
+    if (this.props.updateLambdaPath) {
+      this.updateLambda = this.createSingleLambda(this.props.updateLambdaPath);
+      this.updateLambdaIntegration = new LambdaIntegration(this.updateLambda);
+    }
+    if (this.props.deleteLambdaPath) {
+      this.deleteLambda = this.createSingleLambda(this.props.deleteLambdaPath);
+      this.deleteLambdaIntegration = new LambdaIntegration(this.deleteLambda);
+    }
+  }
+
+  private grantTableRightsToLambda() {
+    if (this.createLambda) {
+      this.table.grantWriteData(this.createLambda);
+    }
+    if (this.readLambda) {
+      this.table.grantReadData(this.readLambda);
+    }
+    if (this.updateLambda) {
+      this.table.grantWriteData(this.updateLambda);
+    }
+    if (this.deleteLambda) {
+      this.table.grantWriteData(this.deleteLambda);
+    }
   }
 
   private createSingleLambda(lambdaName: string): NodejsFunction {
@@ -59,6 +95,11 @@ export class GenericTable {
         `${lambdaName}.ts`
       ),
       handler: "handler",
+      functionName: lambdaId,
+      environment: {
+        TABLE_NAME: this.props.tableName,
+        PRIMARY_KEY: this.props.primaryKey,
+      },
     });
   }
 }
