@@ -222,3 +222,21 @@ aws cognito-idp admin-set-user-password --user-pool-id us-west-2_o05UTS9MJ --use
 user1 Enabled CONFIRMED user@email.com true - Sep 29, 2021 10:22:49 AM Sep 29, 2021 10:17:32 AM
 
 ---
+
+## Restrict acess to API
+
+Go to API Gateway in AWS Management console...
+
+Click on spaceAPI - will see request methods etc
+
+First create an authorizer...
+
+name it
+
+click Cognito radio button and select user pool ...
+
+Type "Authorization" header for token source..
+
+Apply this authorization to an api endpoint - save and redeploy api (all from aws management console)
+
+---
