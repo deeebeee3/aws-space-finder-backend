@@ -242,3 +242,7 @@ Apply this authorization to an api endpoint - save and redeploy api (all from aw
 https://jwt.io/
 
 ---
+
+aws cognito-idp admin-set-user-password --user-pool-id us-west-2_BnY9d8GcQ --username user2 --password "P@ssw0rd" --permanent
+
+---

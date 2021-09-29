@@ -36,7 +36,8 @@ export class AuthorizerWrapper {
       },
     });
 
-    //logs it in CloudFormation under the stack (spaceFinder in our case)
+    //logs it in the console when doing a cdk deploy...
+    //we use the value in the config.ts (USER_POOL_ID) for the auth.test.ts
     new CfnOutput(this.scope, "UserPoolId", {
       value: this.userPool.userPoolId,
     });
@@ -55,7 +56,8 @@ export class AuthorizerWrapper {
       generateSecret: false,
     });
 
-    //logs it in CloudFormation under the stack (spaceFinder in our case)
+    //logs it in the console when doing a cdk deploy...
+    //we use the value in the config.ts (APP_CLIENT_ID) for the auth.test.ts
     new CfnOutput(this.scope, "UserPoolClientId", {
       value: this.userPoolClient.userPoolClientId,
     });
