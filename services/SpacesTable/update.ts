@@ -4,6 +4,7 @@ import {
   APIGatewayProxyResult,
   Context,
 } from "aws-lambda";
+import { getEventBody } from "../Shared/Utils";
 
 /* this env var we defined in the GenericTable class
 where we createSingleLambda */
@@ -21,8 +22,7 @@ async function handler(
     body: "Hello from DynamoDB",
   };
 
-  const requestBody =
-    typeof event.body === "object" ? event.body : JSON.parse(event.body);
+  const requestBody = getEventBody(event);
 
   const spaceId = event.queryStringParameters?.[PRIMARY_KEY];
 
