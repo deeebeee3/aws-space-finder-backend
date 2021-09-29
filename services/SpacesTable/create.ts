@@ -4,6 +4,10 @@ import {
   APIGatewayProxyResult,
   Context,
 } from "aws-lambda";
+import {
+  MissingFieldError,
+  validateAsSpaceEntry,
+} from "../Shared/InputValidator";
 import { v4 } from "uuid";
 
 /* this env var we defined in the GenericTable class
@@ -21,11 +25,15 @@ async function handler(
     body: "Hello from DynamoDB",
   };
 
-  const item =
-    typeof event.body === "object" ? event.body : JSON.parse(event.body);
-  item.spaceId = v4();
-
   try {
+    const item =
+      typeof event.body === "object" ? event.body : JSON.parse(event.body);
+    item.spaceId = v4();
+
+    /* will throw a meaningful error if item does not have all the fields 
+    required by this method*/
+    validateAsSpaceEntry(item);
+
     await dbClient
       .put({
         TableName: TABLE_NAME!, //we are sure table name exists at this point !
@@ -34,6 +42,11 @@ async function handler(
       .promise();
     result.body = JSON.stringify(`Created item with id: ${item.spaceId}`);
   } catch (error: any) {
+    if (error instanceof MissingFieldError) {
+      result.statusCode = 403;
+    } else {
+      result.statusCode = 500;
+    }
     result.body = error.message;
   }
 
