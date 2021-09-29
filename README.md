@@ -175,3 +175,50 @@ like see our s3 buckets etc...
 this uses the permissions from our local aws config (we gave administrator access to it) rather than what we assigned to the lambda
 
 ---
+
+# AWS Cognito - User pools
+
+Create a user pool in Cognito - accept standard defaults and get the pool id...
+
+Example:
+Pool Id: us-west-2_o05UTS9MJ
+
+Click on App Integration in sidebar and add a domain and save changes...
+
+https://[domain].auth.us-west-2.amazoncognito.com
+https://deeebeee3.auth.us-west-2.amazoncognito.com
+
+Click on App clients in sidebar under General settings and add a app client...
+
+my-app-client
+
+untick Generate client secret
+
+tick everything under Auth Flows Configuration
+
+Click create app client
+
+Now we have a app client id:
+
+App client id: sc8n81dpbn2v57th8vuvr23io
+
+Now we have the user pool and app client ids - which is everything we need to
+use this user pool inside the UI of our app...
+
+Then create an initial user... under general settings - users and groups...
+
+---
+
+user1 Enabled FORCE_CHANGE_PASSWORD user@email.com true - Sep 29, 2021 10:17:32 AM Sep 29, 2021 10:17:32 AM
+
+---
+
+Remove FORCE_CHANGE_PASSWORD for this user:
+
+aws cognito-idp admin-set-user-password --user-pool-id us-west-2_o05UTS9MJ --username user1 --password "P@ssw0rd" --permanent
+
+---
+
+user1 Enabled CONFIRMED user@email.com true - Sep 29, 2021 10:22:49 AM Sep 29, 2021 10:17:32 AM
+
+---
