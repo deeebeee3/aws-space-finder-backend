@@ -181,7 +181,7 @@ this uses the permissions from our local aws config (we gave administrator acces
 Create a user pool in Cognito - accept standard defaults and get the pool id...
 
 Example:
-Pool Id: us-west-2_o05UTS9MJ
+User Pool Id: us-west-2_o05UTS9MJ
 
 Click on App Integration in sidebar and add a domain and save changes...
 
@@ -200,7 +200,7 @@ Click create app client
 
 Now we have a app client id:
 
-App client id: sc8n81dpbn2v57th8vuvr23io
+User Pool (App) client id: sc8n81dpbn2v57th8vuvr23io
 
 Now we have the user pool and app client ids - which is everything we need to
 use this user pool inside the UI of our app...
@@ -238,5 +238,7 @@ click Cognito radio button and select user pool ...
 Type "Authorization" header for token source..
 
 Apply this authorization to an api endpoint - save and redeploy api (all from aws management console)
+
+https://jwt.io/
 
 ---
