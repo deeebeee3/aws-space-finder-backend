@@ -8,7 +8,12 @@ import {
   MissingFieldError,
   validateAsSpaceEntry,
 } from "../Shared/InputValidator";
-import { v4 } from "uuid";
+
+// no way to import just v4 without importing the whole lib, so we won't
+// use it since it packs the whole lib into our compiled assets (cdk.out)
+// import { v4 } from "uuid";
+
+import { generateRandomId } from "../Shared/Utils";
 
 /* this env var we defined in the GenericTable class
 where we createSingleLambda */
@@ -28,7 +33,7 @@ async function handler(
   try {
     const item =
       typeof event.body === "object" ? event.body : JSON.parse(event.body);
-    item.spaceId = v4();
+    item.spaceId = generateRandomId();
 
     /* will throw a meaningful error if item does not have all the fields 
     required by this method*/
