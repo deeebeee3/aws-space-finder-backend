@@ -223,7 +223,7 @@ user1 Enabled CONFIRMED user@email.com true - Sep 29, 2021 10:22:49 AM Sep 29, 2
 
 ---
 
-## Restrict acess to API
+## Restrict access to API
 
 Go to API Gateway in AWS Management console...
 
@@ -246,3 +246,11 @@ https://jwt.io/
 aws cognito-idp admin-set-user-password --user-pool-id us-west-2_BnY9d8GcQ --username user2 --password "P@ssw0rd" --permanent
 
 ---
+
+## User Groups
+
+Created a User Group using Cfn - CfnUserPoolGroup construct
+
+- when we do a log in request we get the jwt but also the usergroup info in the response from cognito...
+
+We can access this info from the event in our lambda...

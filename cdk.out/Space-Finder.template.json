@@ -1403,6 +1403,18 @@
         "aws:cdk:path": "Space-Finder/SpaceUserAuthorizer/Resource"
       }
     },
+    "admins": {
+      "Type": "AWS::Cognito::UserPoolGroup",
+      "Properties": {
+        "UserPoolId": {
+          "Ref": "SpaceUserPool6AB542DC"
+        },
+        "GroupName": "admins"
+      },
+      "Metadata": {
+        "aws:cdk:path": "Space-Finder/admins"
+      }
+    },
     "helloLambdaNodeJsServiceRole17C143C3": {
       "Type": "AWS::IAM::Role",
       "Properties": {
@@ -1468,7 +1480,7 @@
           "S3Bucket": {
             "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}"
           },
-          "S3Key": "1541623ed4a959b16d88fa080af6d9e120f65bf0f48d00b47636da588562f091.zip"
+          "S3Key": "c45e2788dd2109286c2936b352d42e9966380aaf7cc8a294f09243f2db678031.zip"
         },
         "Role": {
           "Fn::GetAtt": [
@@ -1490,14 +1502,14 @@
       ],
       "Metadata": {
         "aws:cdk:path": "Space-Finder/helloLambdaNodeJs/Resource",
-        "aws:asset:path": "asset.1541623ed4a959b16d88fa080af6d9e120f65bf0f48d00b47636da588562f091",
+        "aws:asset:path": "asset.c45e2788dd2109286c2936b352d42e9966380aaf7cc8a294f09243f2db678031",
         "aws:asset:property": "Code"
       }
     },
     "CDKMetadata": {
       "Type": "AWS::CDK::Metadata",
       "Properties": {
-        "Analytics": "v2:deflate64:H4sIAAAAAAAA/1WRT0/DMAzFP8vuaRibxL0b4gZMA85TlpjiLY2rOmEqVb87SbPuz8m/91S79stCzuW8aLVcLGfqxIU2x8LiXvYfXumjiNauVw1WysNJdbLfAvuyQbH+djdYak3BefEMjaWuhojRvVFxWgXJyxBbKbQaVoqv4jwz8yv4HzLJmogqh56+GNoNkeUyRLvFP2jHBS5qEKjquCfZPDDVDVnUXZKZBmFVvTdK9smCtkZmJJc+eAlO+8iDMJ1TNZkYxafa52EjTM07RwYOLN/GMvUJXu4UM3iWZSpRy1XQR/DjrTpfIfvpjjT2whOsLZ4jvHeGIXnvwTfBX2Mb/5NyRVfdZRh5Tc5gvietKw/88Pv4JB/jo88OjFi08dmwBrnN9R9OIL/7DwIAAA=="
+        "Analytics": "v2:deflate64:H4sIAAAAAAAA/3WST0/DMAzFP8vuadgfiXs3BCdgGnCesiQUd2lcxQlTqfrdSZp1GwdO/r2n2rVfu+RzPi+c5MvVTJyokOpYGDjw/s0LeWTR2veihUp4fRId73eafNkC23zaGyylxGA9e9Ctwa7REaN7o+K0SicvQ2zF4KReC7qK88zMz9p/oUrWRFhZ8PhB2m0RDZUh2g5+tBsXuKiBgWjinmjywFS3aEB2SWYamBHNQQneJ0u7BogAbXrgMVjpIw9MdVY0qGIU7+KQh40wNe8tKl0TfxnL1MdotRdE2hMvU4mar4M8aj/eKvMVvJ/uSGMvPMHGwDnC/50nh6EdhmS9Bt8Gf81xfHEKGmz1J9TIG7QK8oFpf17T3ffini/iXzCrCaBw8TtCo/ku11+YoIhrIAIAAA=="
       },
       "Metadata": {
         "aws:cdk:path": "Space-Finder/CDKMetadata/Default"
