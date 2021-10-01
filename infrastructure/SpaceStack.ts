@@ -50,7 +50,7 @@ export class SpaceStack extends Stack {
       handler: "handler",
     });
 
-    //Create a new policy (permissions)
+    //Create a new policy (permissions) for the Lambda
     const s3ListPolicy = new PolicyStatement();
     s3ListPolicy.addActions("s3:ListAllMyBuckets");
     s3ListPolicy.addResources("*");
