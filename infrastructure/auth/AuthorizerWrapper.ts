@@ -9,6 +9,7 @@ import {
   CfnUserPoolGroup,
 } from "aws-cdk-lib/lib/aws-cognito";
 import { Construct } from "constructs";
+import { IdentityPoolWrapper } from "./IdentityPoolWrapper";
 
 export class AuthorizerWrapper {
   private scope: Construct;
@@ -17,6 +18,7 @@ export class AuthorizerWrapper {
   private userPool: UserPool;
   private userPoolClient: UserPoolClient;
   public authorizer: CognitoUserPoolsAuthorizer;
+  private identityPoolWrapper: IdentityPoolWrapper;
 
   constructor(scope: Construct, api: RestApi) {
     this.scope = scope;
@@ -28,6 +30,7 @@ export class AuthorizerWrapper {
     this.createUserPool();
     this.addUserPoolClient();
     this.createAuthorizer();
+    this.initializeIdentityPoolWrapper();
     this.createAdminsGroup();
   }
 
@@ -83,12 +86,21 @@ export class AuthorizerWrapper {
       this.authorizer._attachToApi(this.api);
   }
 
+  private initializeIdentityPoolWrapper() {
+    this.identityPoolWrapper = new IdentityPoolWrapper(
+      this.scope,
+      this.userPool,
+      this.userPoolClient
+    );
+  }
+
   //there currently is no CDK Construct for UserPoolGroup
   //so we will just use the Cfn one instead (CfnUserPoolGroup)
   private createAdminsGroup() {
     new CfnUserPoolGroup(this.scope, "admins", {
       groupName: "admins",
       userPoolId: this.userPool.userPoolId, //SpaceUserPool
+      roleArn: this.identityPoolWrapper.adminRole.roleArn,
     });
   }
 }

@@ -2,6 +2,7 @@ import {
   UserPool,
   UserPoolClient,
   CfnIdentityPool,
+  CfnIdentityPoolRoleAttachment,
 } from "aws-cdk-lib/lib/aws-cognito";
 import {
   Effect,
@@ -20,7 +21,7 @@ export class IdentityPoolWrapper {
   private identityPool: CfnIdentityPool;
   private authenticatedRole: Role;
   private unAuthenticatedRole: Role;
-  private adminRole: Role;
+  public adminRole: Role;
 
   constructor(
     scope: Construct,
@@ -36,6 +37,7 @@ export class IdentityPoolWrapper {
   private initialize() {
     this.initializeIdentityPool();
     this.initializeRoles();
+    this.attachRoles();
   }
 
   private initializeIdentityPool() {
@@ -75,7 +77,7 @@ export class IdentityPoolWrapper {
               "cognito-identity.amazonaws.com:amr": "authenticated",
             },
           },
-          "cognito-identity.amazonaws.com:aud"
+          "sts:AssumeRoleWithWebIdentity"
         ),
       }
     );
@@ -96,12 +98,12 @@ export class IdentityPoolWrapper {
               "cognito-identity.amazonaws.com:amr": "unauthenticated",
             },
           },
-          "cognito-identity.amazonaws.com:aud"
+          "sts:AssumeRoleWithWebIdentity"
         ),
       }
     );
 
-    this.adminRole = new Role(this.scope, "CognitoDefaultAuthenticatedRole", {
+    this.adminRole = new Role(this.scope, "CognitoAdminRole", {
       assumedBy: new FederatedPrincipal(
         "cognito-identity.amazonaws.com",
         {
@@ -112,7 +114,7 @@ export class IdentityPoolWrapper {
             "cognito-identity.amazonaws.com:amr": "authenticated",
           },
         },
-        "cognito-identity.amazonaws.com:aud"
+        "sts:AssumeRoleWithWebIdentity"
       ),
     });
 
@@ -123,5 +125,24 @@ export class IdentityPoolWrapper {
         resources: ["*"],
       })
     );
+  }
+
+  private attachRoles() {
+    new CfnIdentityPoolRoleAttachment(this.scope, "RolesAttachment", {
+      identityPoolId: this.identityPool.ref,
+      //basic implementation of authenticated and unauthenticated roles
+      roles: {
+        authenticated: this.authenticatedRole.roleArn,
+        unauthenticated: this.unAuthenticatedRole.roleArn,
+      },
+      roleMappings: {
+        //get role from token if it has role information otherwise just use the authenticated role
+        adminsMapping: {
+          type: "Token",
+          ambiguousRoleResolution: "AuthenticatedRole",
+          identityProvider: `${this.userPool.userPoolProviderName}:${this.userPoolClient.userPoolClientId}`,
+        },
+      },
+    });
   }
 }
