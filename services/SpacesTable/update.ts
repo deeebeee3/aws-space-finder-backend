@@ -4,7 +4,7 @@ import {
   APIGatewayProxyResult,
   Context,
 } from "aws-lambda";
-import { getEventBody } from "../Shared/Utils";
+import { addCorsHeader, getEventBody } from "../Shared/Utils";
 
 /* this env var we defined in the GenericTable class
 where we createSingleLambda */
@@ -21,6 +21,8 @@ async function handler(
     statusCode: 200,
     body: "Hello from DynamoDB",
   };
+
+  addCorsHeader(result);
 
   const requestBody = getEventBody(event);
 

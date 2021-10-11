@@ -254,3 +254,9 @@ Created a User Group using Cfn - CfnUserPoolGroup construct
 - when we do a log in request we get the jwt but also the usergroup info in the response from cognito...
 
 We can access this info from the event in our lambda...
+
+---
+
+# Amplify inside React Frontend
+
+Add CORS to our S3 Photo Bucket and also to our Lambdas...

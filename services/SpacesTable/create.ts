@@ -13,7 +13,7 @@ import {
 // use it since it packs the whole lib into our compiled assets (cdk.out)
 // import { v4 } from "uuid";
 
-import { generateRandomId, getEventBody } from "../Shared/Utils";
+import { generateRandomId, getEventBody, addCorsHeader } from "../Shared/Utils";
 
 /* this env var we defined in the GenericTable class
 where we createSingleLambda */
@@ -30,6 +30,8 @@ async function handler(
     body: "Hello from DynamoDB",
   };
 
+  addCorsHeader(result);
+
   try {
     const item = getEventBody(event);
 
@@ -45,7 +47,9 @@ async function handler(
         Item: item,
       })
       .promise();
-    result.body = JSON.stringify(`Created item with id: ${item.spaceId}`);
+    result.body = JSON.stringify({
+      id: item.spaceId,
+    });
   } catch (error: any) {
     if (error instanceof MissingFieldError) {
       result.statusCode = 403;
