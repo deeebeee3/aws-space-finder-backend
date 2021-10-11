@@ -1,4 +1,4 @@
-import { Stack, StackProps } from "aws-cdk-lib";
+import { CfnOutput, Fn, Stack, StackProps } from "aws-cdk-lib";
 import { Construct } from "constructs";
 /* import {
   Code,
@@ -16,10 +16,13 @@ import { GenericTable } from "./GenericTable";
 import { NodejsFunction } from "aws-cdk-lib/lib/aws-lambda-nodejs";
 import { PolicyStatement } from "aws-cdk-lib/lib/aws-iam";
 import { AuthorizerWrapper } from "./auth/AuthorizerWrapper";
+import { Bucket, HttpMethods } from "aws-cdk-lib/lib/aws-s3";
 
 export class SpaceStack extends Stack {
   private api = new RestApi(this, "SpaceApi");
   private authorizer: AuthorizerWrapper;
+  private suffix: string;
+  private spacesPhotosBucket: Bucket;
   /* private spacesTable = new GenericTable("SpacesTable", "spaceId", this); */
 
   private spacesTable = new GenericTable(this, {
@@ -36,6 +39,8 @@ export class SpaceStack extends Stack {
     super(scope, id, props);
 
     this.authorizer = new AuthorizerWrapper(this, this.api);
+    this.initializeSuffix();
+    this.initializeSpacesPhotosBucket();
 
     //JS Lambda
     /* const helloLambda = new LambdaFunction(this, "helloLambda", {
@@ -82,5 +87,28 @@ export class SpaceStack extends Stack {
     spaceResource.addMethod("GET", this.spacesTable.readLambdaIntegration);
     spaceResource.addMethod("PUT", this.spacesTable.updateLambdaIntegration);
     spaceResource.addMethod("DELETE", this.spacesTable.deleteLambdaIntegration);
+  }
+
+  private initializeSuffix() {
+    const shortStackId = Fn.select(2, Fn.split("/", this.stackId));
+    const theSuffix = Fn.select(4, Fn.split("-", shortStackId));
+    this.suffix = theSuffix;
+  }
+
+  private initializeSpacesPhotosBucket() {
+    this.spacesPhotosBucket = new Bucket(this, "spaces-photos", {
+      bucketName: `spaces-photos-${this.suffix}`,
+      cors: [
+        {
+          allowedMethods: [HttpMethods.HEAD, HttpMethods.GET, HttpMethods.PUT],
+          allowedOrigins: ["*"],
+          allowedHeaders: ["*"],
+        },
+      ],
+    });
+
+    new CfnOutput(this, "spaces-photos-bucket-name", {
+      value: this.spacesPhotosBucket.bucketName,
+    });
   }
 }
