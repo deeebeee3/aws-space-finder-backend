@@ -5,16 +5,16 @@ import { Construct } from "constructs";
   Function as LambdaFunction,
   Runtime,
 } from "aws-cdk-lib/lib/aws-lambda"; */
-import { join } from "path";
+/* import { join } from "path"; */
 import {
   AuthorizationType,
-  LambdaIntegration,
+  /*   LambdaIntegration, */
   MethodOptions,
   RestApi,
 } from "aws-cdk-lib/lib/aws-apigateway";
 import { GenericTable } from "./GenericTable";
-import { NodejsFunction } from "aws-cdk-lib/lib/aws-lambda-nodejs";
-import { PolicyStatement } from "aws-cdk-lib/lib/aws-iam";
+/* import { NodejsFunction } from "aws-cdk-lib/lib/aws-lambda-nodejs";
+import { PolicyStatement } from "aws-cdk-lib/lib/aws-iam"; */
 import { AuthorizerWrapper } from "./auth/AuthorizerWrapper";
 import { Bucket, HttpMethods } from "aws-cdk-lib/lib/aws-s3";
 
@@ -50,18 +50,18 @@ export class SpaceStack extends Stack {
     }); */
 
     //TS Lambda
-    const helloLambdaNodeJs = new NodejsFunction(this, "helloLambdaNodeJs", {
+    /*     const helloLambdaNodeJs = new NodejsFunction(this, "helloLambdaNodeJs", {
       entry: join(__dirname, "..", "services", "node-lambda", "hello.ts"),
       handler: "handler",
-    });
+    }); */
 
     //Create a new policy (permissions) for the Lambda
-    const s3ListPolicy = new PolicyStatement();
+    /*     const s3ListPolicy = new PolicyStatement();
     s3ListPolicy.addActions("s3:ListAllMyBuckets");
-    s3ListPolicy.addResources("*");
+    s3ListPolicy.addResources("*"); */
 
     //Give the Permissions to our Lambda
-    helloLambdaNodeJs.addToRolePolicy(s3ListPolicy);
+    /*   helloLambdaNodeJs.addToRolePolicy(s3ListPolicy); */
 
     //Configure authorizor to attach to Lambda Integration
     const optionsWithAuthorizer: MethodOptions = {
@@ -72,14 +72,14 @@ export class SpaceStack extends Stack {
     };
 
     //Hello Api lambda integration (Lambda and APIGateway)
-    const helloLambdaIntegration = new LambdaIntegration(helloLambdaNodeJs);
+    /*     const helloLambdaIntegration = new LambdaIntegration(helloLambdaNodeJs);
     const helloLambdaResource =
-      this.api.root.addResource("hello"); /* api-url/hello */
-    helloLambdaResource.addMethod(
+      this.api.root.addResource("hello"); */ /* api-url/hello */
+    /*     helloLambdaResource.addMethod(
       "GET",
       helloLambdaIntegration,
       optionsWithAuthorizer // attach authorizor to this api method
-    );
+    ); */
 
     //Spaces API integrations:
     const spaceResource = this.api.root.addResource("spaces");
