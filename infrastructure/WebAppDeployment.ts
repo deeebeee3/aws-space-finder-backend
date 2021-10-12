@@ -1,5 +1,7 @@
-import { Stack } from "aws-cdk-lib";
+import { CfnOutput, Stack } from "aws-cdk-lib";
 import { Bucket } from "aws-cdk-lib/lib/aws-s3";
+import { BucketDeployment, Source } from "aws-cdk-lib/lib/aws-s3-deployment";
+import { join } from "path";
 
 export class WebAppDeployment {
   private stack: Stack;
@@ -19,6 +21,19 @@ export class WebAppDeployment {
       bucketName: bucketName,
       publicReadAccess: true,
       websiteIndexDocument: "index.html",
+    });
+
+    new BucketDeployment(this.stack, "space-app-web-deployment", {
+      destinationBucket: this.deploymentBucket,
+      sources: [
+        Source.asset(
+          join(__dirname, "..", "..", "aws-space-finder-frontend", "build")
+        ),
+      ],
+    });
+
+    new CfnOutput(this.stack, "spaceFinderWebAppS3Url", {
+      value: this.deploymentBucket.bucketWebsiteUrl,
     });
   }
 }

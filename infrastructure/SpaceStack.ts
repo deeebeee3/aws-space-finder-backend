@@ -17,6 +17,7 @@ import { GenericTable } from "./GenericTable";
 import { PolicyStatement } from "aws-cdk-lib/lib/aws-iam"; */
 import { AuthorizerWrapper } from "./auth/AuthorizerWrapper";
 import { Bucket, HttpMethods } from "aws-cdk-lib/lib/aws-s3";
+import { WebAppDeployment } from "./WebAppDeployment";
 
 export class SpaceStack extends Stack {
   private api = new RestApi(this, "SpaceApi");
@@ -45,6 +46,7 @@ export class SpaceStack extends Stack {
       this.api,
       this.spacesPhotosBucket.bucketArn + "/*"
     );
+    new WebAppDeployment(this, this.suffix);
 
     //JS Lambda
     /* const helloLambda = new LambdaFunction(this, "helloLambda", {
