@@ -1,4 +1,5 @@
 import { CfnOutput, Stack } from "aws-cdk-lib";
+import { CloudFrontWebDistribution } from "aws-cdk-lib/lib/aws-cloudfront";
 import { Bucket } from "aws-cdk-lib/lib/aws-s3";
 import { BucketDeployment, Source } from "aws-cdk-lib/lib/aws-s3-deployment";
 import { join } from "path";
@@ -34,6 +35,31 @@ export class WebAppDeployment {
 
     new CfnOutput(this.stack, "spaceFinderWebAppS3Url", {
       value: this.deploymentBucket.bucketWebsiteUrl,
+    });
+
+    //This will give us a shorter friendly https URL
+    const cloudFront = new CloudFrontWebDistribution(
+      this.stack,
+      "space-app-web-distribution",
+      {
+        originConfigs: [
+          {
+            behaviors: [
+              {
+                isDefaultBehavior: true,
+              },
+            ],
+            s3OriginSource: {
+              s3BucketSource: this.deploymentBucket,
+            },
+          },
+        ],
+      }
+    );
+
+    //print the url
+    new CfnOutput(this.stack, "spaceFinderWebAppCloudFrontUrl", {
+      value: cloudFront.distributionDomainName,
     });
   }
 }
