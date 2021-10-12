@@ -1816,10 +1816,61 @@
         "aws:asset:property": "Code"
       }
     },
+    "spaceappwebdistributionCFDistribution43751980": {
+      "Type": "AWS::CloudFront::Distribution",
+      "Properties": {
+        "DistributionConfig": {
+          "DefaultCacheBehavior": {
+            "AllowedMethods": [
+              "GET",
+              "HEAD"
+            ],
+            "CachedMethods": [
+              "GET",
+              "HEAD"
+            ],
+            "Compress": true,
+            "ForwardedValues": {
+              "Cookies": {
+                "Forward": "none"
+              },
+              "QueryString": false
+            },
+            "TargetOriginId": "origin1",
+            "ViewerProtocolPolicy": "redirect-to-https"
+          },
+          "DefaultRootObject": "index.html",
+          "Enabled": true,
+          "HttpVersion": "http2",
+          "IPV6Enabled": true,
+          "Origins": [
+            {
+              "ConnectionAttempts": 3,
+              "ConnectionTimeout": 10,
+              "DomainName": {
+                "Fn::GetAtt": [
+                  "spaceappwebidBC88228C",
+                  "RegionalDomainName"
+                ]
+              },
+              "Id": "origin1",
+              "S3OriginConfig": {}
+            }
+          ],
+          "PriceClass": "PriceClass_100",
+          "ViewerCertificate": {
+            "CloudFrontDefaultCertificate": true
+          }
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "Space-Finder/space-app-web-distribution/CFDistribution"
+      }
+    },
     "CDKMetadata": {
       "Type": "AWS::CDK::Metadata",
       "Properties": {
-        "Analytics": "v2:deflate64:H4sIAAAAAAAA/22S207DMAyGn4X7LJwk7ssQCImTON1OWWKGtzSucmAqVd8dp1nXCbjy57+Onf7xmTyRJzOv5dn5kdqGmTabmcWl7F6i0hvB0qJTDa5UhK1qZfcMIVYNivmHO8BKa0ouiitoLLU1MLJ6kHG3FWStAB+l5DVcqjAlu56F7yF+ksnSSLRyGOktgH8isqFKLHv8Bj9cYJ/1AlXN9yRbGub4RBZ1m9NCvbCqXholuyyBrzEEJJcLrpPTccd3qgX/Dn749oJuZSHSVDFCL0zrVE2GXXtVyzJ3gHHOwpGBdZAPQ9g3COfsbQgQg6xyEGZvmLxMegNxcrDnatkVdXCtYB61oxKmXz3Me6GLfbIbDcwlex5hbnH3dn+VW8OAsR0PH+bZ5SryxnzWv87feEpN32fpMcUmxem5h3/O+8DOjkbZbPmCt05blNU28PjhFcQ8hUj1v6vCPCdnsLxFtlquw/HX6YU85d0+WgfEmeftxBrkc4k/k5syn/YCAAA="
+        "Analytics": "v2:deflate64:H4sIAAAAAAAA/22T227bMAyGn6X3inoCeu+66DBgh6Jdu8tAltiUiSwaOizwDL/7KCuOjW1X/PhboqSf9I28klcbr+XN7YU6ho02h43FRg4vUemDYGk7qA53KsJR9XJ4hhCrDkX97lZYaU3JRfEAnaW+BUZWVxlX20HWCvBWSl7DvQpLcqpZ+CvEDzJZmol2DiO9BvBPRDZUiWWPv8FPFzhno0DV8j3JloI5PpFF3ee00Cisahuj5JAl8C2GgOTygsfkdDzxF9WDfwM/fXtBt7MQaVkxwyhM71RLhl37oZpy7gTzOVtHBvZBfpvCuUC4ZW9DgBhklYMwZ8PkfdIHiIuDI6+WQ1En1wrmo05UwvLUdT4KXeyTw2xgXnLmGWqLp979q3w2DBj7efM6zy5XkSfmo/1r/ydPqePjLSXz7olfNtSZHzP/hOYBQ/TYpNnzdT6OWfmeYpfiMiWTVXmMuCGzvzZ3asvDqi3K6hj41lPzRJ1CpPa/E8ZckzNYWpg7JPfh8tf1nbzmX+JiHxA3nocaW5DPJf4BhGMQNC0DAAA="
       },
       "Metadata": {
         "aws:cdk:path": "Space-Finder/CDKMetadata/Default"
@@ -1879,6 +1930,14 @@
         "Fn::GetAtt": [
           "spaceappwebidBC88228C",
           "WebsiteURL"
+        ]
+      }
+    },
+    "spaceFinderWebAppCloudFrontUrl": {
+      "Value": {
+        "Fn::GetAtt": [
+          "spaceappwebdistributionCFDistribution43751980",
+          "DomainName"
         ]
       }
     }

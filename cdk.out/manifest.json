@@ -23,7 +23,7 @@
         "validateOnSynth": false,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-deploy-role-${AWS::AccountId}-${AWS::Region}",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-cfn-exec-role-${AWS::AccountId}-${AWS::Region}",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/c4a8000b7e6296034e2de21c644afe9fd0dff4875faa10c894b1303d19bffa94.json",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-${AWS::AccountId}-${AWS::Region}/92f9e201e0f1f2a2968479071d985a04e4b8cd91544f0285abfc0ac516ecd2bc.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
@@ -371,6 +371,18 @@
           {
             "type": "aws:cdk:logicalId",
             "data": "spaceFinderWebAppS3Url"
+          }
+        ],
+        "/Space-Finder/space-app-web-distribution/CFDistribution": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "spaceappwebdistributionCFDistribution43751980"
+          }
+        ],
+        "/Space-Finder/spaceFinderWebAppCloudFrontUrl": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "spaceFinderWebAppCloudFrontUrl"
           }
         ],
         "/Space-Finder/CDKMetadata/Default": [

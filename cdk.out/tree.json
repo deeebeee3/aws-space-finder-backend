@@ -2724,6 +2724,80 @@
               "version": "2.0.0-rc.23"
             }
           },
+          "space-app-web-distribution": {
+            "id": "space-app-web-distribution",
+            "path": "Space-Finder/space-app-web-distribution",
+            "children": {
+              "CFDistribution": {
+                "id": "CFDistribution",
+                "path": "Space-Finder/space-app-web-distribution/CFDistribution",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::CloudFront::Distribution",
+                  "aws:cdk:cloudformation:props": {
+                    "distributionConfig": {
+                      "enabled": true,
+                      "defaultRootObject": "index.html",
+                      "httpVersion": "http2",
+                      "priceClass": "PriceClass_100",
+                      "ipv6Enabled": true,
+                      "origins": [
+                        {
+                          "id": "origin1",
+                          "domainName": {
+                            "Fn::GetAtt": [
+                              "spaceappwebidBC88228C",
+                              "RegionalDomainName"
+                            ]
+                          },
+                          "s3OriginConfig": {},
+                          "connectionAttempts": 3,
+                          "connectionTimeout": 10
+                        }
+                      ],
+                      "defaultCacheBehavior": {
+                        "allowedMethods": [
+                          "GET",
+                          "HEAD"
+                        ],
+                        "cachedMethods": [
+                          "GET",
+                          "HEAD"
+                        ],
+                        "compress": true,
+                        "forwardedValues": {
+                          "queryString": false,
+                          "cookies": {
+                            "forward": "none"
+                          }
+                        },
+                        "targetOriginId": "origin1",
+                        "viewerProtocolPolicy": "redirect-to-https"
+                      },
+                      "viewerCertificate": {
+                        "cloudFrontDefaultCertificate": true
+                      }
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "aws-cdk-lib.aws_cloudfront.CfnDistribution",
+                  "version": "2.0.0-rc.23"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.aws_cloudfront.CloudFrontWebDistribution",
+              "version": "2.0.0-rc.23"
+            }
+          },
+          "spaceFinderWebAppCloudFrontUrl": {
+            "id": "spaceFinderWebAppCloudFrontUrl",
+            "path": "Space-Finder/spaceFinderWebAppCloudFrontUrl",
+            "constructInfo": {
+              "fqn": "aws-cdk-lib.CfnOutput",
+              "version": "2.0.0-rc.23"
+            }
+          },
           "CDKMetadata": {
             "id": "CDKMetadata",
             "path": "Space-Finder/CDKMetadata",

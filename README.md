@@ -271,8 +271,6 @@ Space-Finder.IdentityPoolId = us-west-2:b0be2213-4961-400c-bcc2-4016035bd62b
 Space-Finder.SpaceApiEndpointDA7E4050 = https://92p6m8c7ph.execute-api.us-west-2.amazonaws.com/prod/
 Space-Finder.UserPoolClientId = 2e1vgbpmleiq7uk7uoidvsl97a
 Space-Finder.UserPoolId = us-west-2_BnY9d8GcQ
+Space-Finder.spaceFinderWebAppCloudFrontUrl = d1kckt4yk8dech.cloudfront.net
 Space-Finder.spaceFinderWebAppS3Url = http://space-app-web-0ae04a84ad2d.s3-website-us-west-2.amazonaws.com
 Space-Finder.spacesphotosbucketname = spaces-photos-0ae04a84ad2d
-
-Stack ARN:
-arn:aws:cloudformation:us-west-2:841848180286:stack/SpaceFinder/b7bfc830-1ef6-11ec-8165-0ae04a84ad2d
